@@ -14,7 +14,7 @@ APIs:
 
 Contact Email: your@email.com
 
-Deployed App Link: https://yourapp.com
+Deployed App Link: https://cmsc335-final-project-ikiy.onrender.com/
 
 AI Use:
 1. ChatGPT
