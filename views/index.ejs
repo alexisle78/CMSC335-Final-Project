@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Draft Picks Tracker</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <span class="app-title">🏆 Draft Picks Tracker</span>
+      <nav>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/picks/saved" class="nav-link">Saved Picks</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero-section">
+    <h1>Explore NFL, NBA, MLB &amp; NHL Draft History</h1>
+    <p>Select a league, team, and year to see every pick your team made</p>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <form action="/picks/search" method="GET">
+        <div class="form-group">
+          <label for="sport">Select League</label>
+          <select name="sport" id="sport" required>
+            <option value="">-- Choose a League --</option>
+            <option value="nfl">NFL</option>
+            <option value="nba">NBA</option>
+            <option value="mlb">MLB</option>
+            <option value="nhl">NHL</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="teamId">Select Team</label>
+          <select name="teamId" id="teamId" required disabled>
+            <option value="">-- Select a League First --</option>
+          </select>
+          <input type="hidden" name="teamName" id="teamName"/>
+        </div>
+
+        <div class="form-group">
+          <label for="year">Select Year</label>
+          <select name="year" id="year" required>
+            <option value="">-- Choose a Year --</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Search Draft Picks</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>Draft Picks Tracker &copy; 2026 | Data provided by ESPN</p>
+  </footer>
+
+  <script>
+    // Populate year dropdown
+    const yearSelect = document.getElementById('year');
+    for (let y = 2024; y >= 2000; y--) {
+      const opt = document.createElement('option');
+      opt.value = y;
+      opt.textContent = y;
+      yearSelect.appendChild(opt);
+    }
+
+    // When sport changes, fetch teams
+    const sportSelect = document.getElementById('sport');
+    const teamSelect = document.getElementById('teamId');
+    const teamNameInput = document.getElementById('teamName');
+
+    sportSelect.addEventListener('change', async () => {
+      const sport = sportSelect.value;
+      teamSelect.innerHTML = '<option value="">Loading...</option>';
+      teamSelect.disabled = true;
+
+      if (!sport) return;
+
+      const res = await fetch(`/picks/teams?sport=${sport}`);
+      const teams = await res.json();
+
+      teamSelect.innerHTML = '<option value="">-- Choose a Team --</option>';
+      teams.forEach(t => {
+        const opt = document.createElement('option');
+        opt.value = t.id;
+        opt.textContent = t.name;
+        opt.dataset.name = t.name;
+        teamSelect.appendChild(opt);
+      });
+      teamSelect.disabled = false;
+    });
+
+    // Keep hidden teamName input in sync
+    teamSelect.addEventListener('change', () => {
+      const selected = teamSelect.options[teamSelect.selectedIndex];
+      teamNameInput.value = selected.dataset.name || '';
+    });
+  </script>
+</body>
+</html>

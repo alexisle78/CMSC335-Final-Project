@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Saved Picks — Draft Picks Tracker</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <span class="app-title">🏆 Draft Picks Tracker</span>
+      <nav>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/picks/saved" class="nav-link">Saved Picks</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-actions">
+      <a href="/">&larr; Back to Search</a>
+    </div>
+
+    <h2 class="results-header">Your Saved Picks</h2>
+
+    <% if (!savedPicks || savedPicks.length === 0) { %>
+      <div class="no-results">You haven't saved any picks yet. Search for a draft and save your favorites!</div>
+    <% } else { %>
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <table>
+          <thead>
+            <tr>
+              <th>Sport</th>
+              <th>Team</th>
+              <th>Year</th>
+              <th>Player</th>
+              <th>Round</th>
+              <th>Pick #</th>
+              <th>Position</th>
+              <th>Note</th>
+              <th>Saved On</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% savedPicks.forEach(pick => { %>
+              <tr>
+                <td><span class="badge"><%= pick.sport.toUpperCase() %></span></td>
+                <td><%= pick.teamName %></td>
+                <td><%= pick.year %></td>
+                <td><%= pick.playerName %></td>
+                <td><%= pick.round %></td>
+                <td><%= pick.pickNumber %></td>
+                <td><%= pick.position %></td>
+                <td><%= pick.note || '—' %></td>
+                <td><%= new Date(pick.savedOn).toLocaleDateString() %></td>
+                <td>
+                  <form action="/picks/saved/<%= pick._id %>?_method=DELETE" method="POST">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button type="submit" class="btn-danger">Remove</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <footer>
+    <p>Draft Picks Tracker &copy; 2026 | Data provided by ESPN</p>
+  </footer>
+</body>
+</html>

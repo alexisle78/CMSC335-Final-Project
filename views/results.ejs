@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Draft Results — Draft Picks Tracker</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <span class="app-title">🏆 Draft Picks Tracker</span>
+      <nav>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/picks/saved" class="nav-link">Saved Picks</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-actions">
+      <a href="/">&larr; Back to Search</a>
+    </div>
+
+    <h2 class="results-header">
+      <%= year %> <%= sport.toUpperCase() %> Draft &mdash; <%= teamName %>
+      <span class="badge"><%= picks.length %> picks</span>
+    </h2>
+
+    <% if (picks.length === 0) { %>
+      <div class="no-results">No draft data found for this selection.</div>
+    <% } else { %>
+      <div class="card" style="padding: 0; overflow: hidden;">
+        <table>
+          <thead>
+            <tr>
+              <th>Round</th>
+              <th>Pick #</th>
+              <th>Player Name</th>
+              <th>Position</th>
+              <th>College / School</th>
+              <th>Save</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% picks.forEach(pick => { %>
+              <tr>
+                <td><%= pick.round %></td>
+                <td><%= pick.pickNumber %></td>
+                <td><%= pick.playerName %></td>
+                <td><%= pick.position %></td>
+                <td><%= pick.college %></td>
+                <td></td>
+              </tr>
+              <tr class="save-row">
+                <td colspan="6">
+                  <form action="/picks/save" method="POST" class="save-form">
+                    <input type="hidden" name="sport"      value="<%= sport %>"/>
+                    <input type="hidden" name="teamName"   value="<%= teamName %>"/>
+                    <input type="hidden" name="teamId"     value="<%= teamId %>"/>
+                    <input type="hidden" name="year"       value="<%= year %>"/>
+                    <input type="hidden" name="playerName" value="<%= pick.playerName %>"/>
+                    <input type="hidden" name="pickNumber" value="<%= pick.pickNumber %>"/>
+                    <input type="hidden" name="round"      value="<%= pick.round %>"/>
+                    <input type="hidden" name="position"   value="<%= pick.position %>"/>
+                    <input type="hidden" name="college"    value="<%= pick.college %>"/>
+                    <input type="text" name="note" placeholder="Add a note..."/>
+                    <button type="submit" class="btn-secondary">Save</button>
+                  </form>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <footer>
+    <p>Draft Picks Tracker &copy; 2026 | Data provided by ESPN</p>
+  </footer>
+</body>
+</html>

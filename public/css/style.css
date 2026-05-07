@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --primary: #1a1a2e;
+  --secondary: #16213e;
+  --accent: #0f3460;
+  --highlight: #e94560;
+  --text-light: #ffffff;
+  --text-dark: #1a1a2e;
+  --bg-light: #f5f5f5;
+  --card-bg: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-size: 16px;
+}
+
+/* ── Header / Navbar ── */
+header {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 1rem 2rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--highlight);
+}
+
+/* ── Hero Section ── */
+.hero-section {
+  background-color: var(--secondary);
+  color: var(--text-light);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.hero-section h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+/* ── Layout ── */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* ── Cards ── */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+/* ── Forms ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+select,
+input[type="text"],
+textarea {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+
+select:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background-color: var(--highlight);
+  color: white;
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.btn-primary:hover {
+  filter: brightness(0.9);
+}
+
+.btn-secondary {
+  background-color: var(--accent);
+  color: white;
+  padding: 0.7rem 1.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+
+.btn-secondary:hover {
+  filter: brightness(0.9);
+}
+
+.btn-danger {
+  background-color: #c0392b;
+  color: white;
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+thead {
+  background-color: var(--primary);
+  color: var(--text-light);
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f0f4f8;
+}
+
+tbody tr:hover {
+  background-color: #dce8f5;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  background-color: var(--accent);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+/* ── Results ── */
+.results-header {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+
+.no-results {
+  text-align: center;
+  color: #888;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+/* ── Save Row Form ── */
+.save-row td {
+  background-color: #f9fbff;
+  border-bottom: 2px solid #dce8f5;
+}
+
+.save-form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.save-form input[type="text"] {
+  width: auto;
+  flex: 1;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.save-form .btn-secondary {
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+}
+
+/* ── Page Actions ── */
+.page-actions {
+  margin-bottom: 1.5rem;
+}
+
+.page-actions a {
+  color: var(--accent);
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.page-actions a:hover {
+  color: var(--highlight);
+}
+
+/* ── Footer ── */
+footer {
+  background-color: var(--primary);
+  color: var(--text-light);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  margin-top: 3rem;
+}

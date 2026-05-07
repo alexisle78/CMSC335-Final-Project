@@ -1,0 +1,15 @@
+{
+  "name": "draft-picks-tracker",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^3.1.10",
+    "express": "^4.18.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^9.6.1"
+  }
+}
