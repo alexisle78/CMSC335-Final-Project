@@ -57,17 +57,43 @@ async function fetchTeams(sport) {
 
 async function fetchDraftPicks(sport, teamId, year) {
   const { sport: s, league: l } = SPORT_MAP[sport];
-  const url = `${ESPN_BASE}/${s}/${l}/draft/picks?season=${year}&team=${teamId}`;
+  const url = `https://sports.core.api.espn.com/v2/sports/${s}/leagues/${l}/seasons/${year}/draft/athletes?limit=500`;
+
   const res  = await fetch(url);
   const data = await res.json();
-  const picks = data.picks || [];
-  return picks.map(p => ({
-    round:      p.round,
-    pickNumber: p.pickNumber,
-    playerName: p.athlete ? `${p.athlete.firstName} ${p.athlete.lastName}` : "Unknown",
-    position:   p.athlete?.position?.abbreviation || "—",
-    college:    p.athlete?.college?.name || "—",
-  }));
+
+  if (!data.items || data.items.length === 0) return [];
+
+  const athletes = await Promise.all(
+    data.items.map(item => fetch(item.$ref).then(r => r.json()))
+  );
+
+  const withPicks = await Promise.all(
+    athletes.map(async a => {
+      if (!a.pick?.$ref) return null;
+      const pickRes  = await fetch(a.pick.$ref);
+      const pickData = await pickRes.json();
+      return { athlete: a, pick: pickData };
+    })
+  );
+
+  // ADD THESE TWO DEBUG LINES
+  const valid = withPicks.filter(item => item !== null);
+  console.log("Sample pick data:", JSON.stringify(valid[0]?.pick, null, 2));
+
+  return valid
+    .filter(item => {
+      const teamRef = item.pick.team?.$ref || "";
+      const match = teamRef.match(/teams\/(\d+)/);
+      return match && String(match[1]) === String(teamId);
+    })
+    .map(item => ({
+      round:      item.pick.round   || null,
+      pickNumber: item.pick.overall || null,
+      playerName: `${item.athlete.firstName} ${item.athlete.lastName}`,
+      position:   item.athlete.position?.abbreviation || "—",
+      college:    "—",
+    }));
 }
 
 /* ── Routes ── */
