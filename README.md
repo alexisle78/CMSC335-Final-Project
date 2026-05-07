@@ -12,7 +12,7 @@ APIs:
 - OpenWeather API (https://openweathermap.org/api)
 - Spotify API (https://developer.spotify.com/documentation/web-api)
 
-Contact Email: your@email.com
+Contact Email: alexisle@terpmail.umd.edu
 
 Deployed App Link: https://cmsc335-final-project-ikiy.onrender.com/
 
