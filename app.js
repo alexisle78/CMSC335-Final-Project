@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 /* ── MongoDB connection ── */
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_CONNECTION_STRING)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB error:", err));
 
