@@ -11,8 +11,8 @@ Note: The 2026 NBA Draft is scheduled to take place on Tuesday, June 23, and Wed
 YouTube Video Link: https://www.youtube.com/watch?v=yourvideo
 
 APIs: 
-- OpenWeather API (https://openweathermap.org/api)
-- Spotify API (https://developer.spotify.com/documentation/web-api)
+- ESPN Hidden Public API (https://sports.core.api.espn.com)
+- ESPN Site API (https://site.api.espn.com)
 
 Contact Email: alexisle@terpmail.umd.edu
 
