@@ -41,8 +41,6 @@ const ESPN_BASE = "https://site.api.espn.com/apis/site/v2/sports";
 const SPORT_MAP = {
   nfl: { sport: "football",   league: "nfl"  },
   nba: { sport: "basketball", league: "nba"  },
-  mlb: { sport: "baseball",   league: "mlb"  },
-  nhl: { sport: "hockey",     league: "nhl"  },
 };
 
 async function fetchTeams(sport) {
