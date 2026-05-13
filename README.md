@@ -8,7 +8,7 @@ App Description: Our application uses the ESPN Draft History API to retrieve eve
 
 Note: The 2026 NBA Draft is scheduled to take place on Tuesday, June 23, and Wednesday, June 24, 2026 so 2025 is the most recent data until these two dates pass also give it extra time for the API to update.
 
-YouTube Video Link: https://www.youtube.com/watch?v=yourvideo
+YouTube Video Link: [https://www.youtube.com/watch?v=yourvideo](https://youtu.be/3GVz7bJa6xM?si=jPYMXQ4x1Dr8g-C6)
 
 APIs: 
 - ESPN Hidden Public API (https://sports.core.api.espn.com)
