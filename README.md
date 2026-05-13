@@ -4,7 +4,7 @@ Submitted by: Alexis Le (alexisle)
 
 Group Members: Alexis Le (alexisle), Isaiah Martinez (zay29)
 
-App Description: Our application uses the ESPN Draft History API to retrieve every NBA player drafted from 2000 to the present. Users can browse draft classes and leave comments on any drafted player, with all comments stored and retrieved using MongoDB.
+App Description: Our application uses the ESPN Draft History API to retrieve every NBA and NFL player drafted from 2000 to the present. Users can browse draft classes and leave comments on any drafted player, with all comments stored and retrieved using MongoDB.
 
 YouTube Video Link: https://www.youtube.com/watch?v=yourvideo
 
